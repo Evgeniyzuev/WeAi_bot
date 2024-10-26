@@ -2,11 +2,10 @@ require('dotenv').config();
 const TelegramBot = require('node-telegram-bot-api');
 
 // Создаем бота с токеном из переменной окружения
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
+const bot = new TelegramBot(process.env.BOT_TOKEN);
 
 // Обработчик команды /start
-bot.onText(/\/start/, (msg) => {
-  const chatId = msg.chat.id;
+async function handleStart(chatId) {
   const welcomeMessage = 'Добро пожаловать! Нажмите кнопку ниже, чтобы запустить приложение.';
 
   const keyboard = {
@@ -15,9 +14,19 @@ bot.onText(/\/start/, (msg) => {
     ]
   };
 
-  bot.sendMessage(chatId, welcomeMessage, {
+  await bot.sendMessage(chatId, welcomeMessage, {
     reply_markup: JSON.stringify(keyboard)
   });
-});
+}
 
-console.log('Бот запущен');
+module.exports = async (req, res) => {
+  if (req.method === 'POST') {
+    const { body } = req;
+    if (body.message && body.message.text === '/start') {
+      await handleStart(body.message.chat.id);
+    }
+    res.status(200).send('OK');
+  } else {
+    res.status(200).send('Бот работает');
+  }
+};
