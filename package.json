@@ -4,15 +4,16 @@
   "description": "Telegram bot for wallet app",
   "main": "index.js",
   "scripts": {
+    "vercel-build": "prisma generate && prisma db push",
     "start": "node index.js"
   },
   "dependencies": {
-    "@prisma/client": "^6.0.0",
+    "@prisma/client": "^5.10.0",
     "dotenv": "^10.0.0",
     "node-telegram-bot-api": "^0.54.0"
   },
   "devDependencies": {
-    "prisma": "^6.0.0"
+    "prisma": "^5.10.0"
   },
   "engines": {
     "node": "20.x"
