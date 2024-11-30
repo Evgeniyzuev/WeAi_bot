@@ -22,7 +22,7 @@ async function handleStart(chatId) {
 
 // Функция ежедневной рассылки
 async function sendDailyMessage() {
-  const message = 'Не забудьте запустить приложение сегодня!';
+  const message = 'Проверить свой ежедневный доход!💵';
   const keyboard = {
     inline_keyboard: [
       [{ text: 'Запустить приложение', url: 'https://t.me/WeAiBot_bot/WeAi' }]
