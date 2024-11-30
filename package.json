@@ -7,12 +7,12 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@prisma/client": "^5.x.x",
+    "@prisma/client": "^6.0.0",
     "dotenv": "^10.0.0",
     "node-telegram-bot-api": "^0.54.0"
   },
   "devDependencies": {
-    "prisma": "^5.x.x"
+    "prisma": "^6.0.0"
   },
   "engines": {
     "node": "20.x"
