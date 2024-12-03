@@ -41,9 +41,15 @@ async function sendDailyMessage() {
 
     for (const user of users) {
       try {
-        await bot.sendMessage(user.telegramId, message, {
+        // Отправляем новое сообщение и получаем его message_id
+        const sentMessage = await bot.sendMessage(user.telegramId, message, {
           reply_markup: JSON.stringify(keyboard)
         });
+
+        // Пытаемся удалить предыдущее сообщение
+        const previousMessageId = sentMessage.message_id - 1;
+        await bot.deleteMessage(user.telegramId, previousMessageId);
+
         // Добавляем небольшую задержку между отправками
         await new Promise(resolve => setTimeout(resolve, 100));
       } catch (error) {
